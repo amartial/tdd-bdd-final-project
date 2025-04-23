@@ -180,8 +180,8 @@ class TestProductModel(unittest.TestCase):
         for product in products:
             product.create()
         available = products[0].available
-        count = len([product for product in products \
-            if product.available == available])
+        count = len([
+            product for product in products if product.available == available])
         found = Product.find_by_availability(available)
         self.assertEqual(found.count(), count)
         for product in found:
@@ -193,7 +193,9 @@ class TestProductModel(unittest.TestCase):
         for product in products:
             product.create()
         category = products[0].category
-        count = len([product for product in products if product.category == category])
+        count = len(
+            [product for product in products if product.category == category]
+        )
         found = Product.find_by_category(category)
         self.assertEqual(found.count(), count)
         for product in found:

@@ -83,9 +83,12 @@ class TestProductRoutes(TestCase):
         products = []
         for _ in range(count):
             test_product = ProductFactory()
-            response = self.client.post(BASE_URL, json=test_product.serialize())
+            response = self.client.post(
+                BASE_URL, json=test_product.serialize())
             self.assertEqual(
-                response.status_code, status.HTTP_201_CREATED, "Could not create test product"
+                response.status_code,
+                status.HTTP_201_CREATED,
+                "Could not create test product"
             )
             new_product = response.get_json()
             test_product.id = new_product["id"]
@@ -139,7 +142,8 @@ class TestProductRoutes(TestCase):
         # self.assertEqual(response.status_code, status.HTTP_200_OK)
         # new_product = response.get_json()
         # self.assertEqual(new_product["name"], test_product.name)
-        # self.assertEqual(new_product["description"], test_product.description)
+        # self.assertEqual(
+        #    new_product["description"], test_product.description)
         # self.assertEqual(Decimal(new_product["price"]), test_product.price)
         # self.assertEqual(new_product["available"], test_product.available)
         # self.assertEqual(new_product["category"], test_product.category.name)
@@ -156,12 +160,17 @@ class TestProductRoutes(TestCase):
     def test_create_product_no_content_type(self):
         """It should not Create a Product with no Content-Type"""
         response = self.client.post(BASE_URL, data="bad data")
-        self.assertEqual(response.status_code, status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
 
     def test_create_product_wrong_content_type(self):
         """It should not Create a Product with wrong Content-Type"""
-        response = self.client.post(BASE_URL, data={}, content_type="plain/text")
-        self.assertEqual(response.status_code, status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
+        response = self.client.post(
+            BASE_URL, data={}, content_type="plain/text")
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
 
     #
     # ADD YOUR TEST CASES HERE

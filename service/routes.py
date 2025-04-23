@@ -58,7 +58,10 @@ def check_content_type(content_type):
     if request.headers["Content-Type"] == content_type:
         return
 
-    app.logger.error("Invalid Content-Type: %s", request.headers["Content-Type"])
+    app.logger.error(
+        "Invalid Content-Type: %s",
+        request.headers["Content-Type"]
+    )
     abort(
         status.HTTP_415_UNSUPPORTED_MEDIA_TYPE,
         f"Content-Type must be {content_type}",
@@ -72,7 +75,8 @@ def check_content_type(content_type):
 def create_products():
     """
     Creates a Product
-    This endpoint will create a Product based the data in the body that is posted
+    This endpoint will create a Product based
+    the data in the body that is posted
     """
     app.logger.info("Request to Create a Product...")
     check_content_type("application/json")
@@ -89,9 +93,13 @@ def create_products():
     #
     # Uncomment this line of code once you implement READ A PRODUCT
     #
-    # location_url = url_for("get_products", product_id=product.id, _external=True)
+    # location_url = url_for(
+    #    "get_products", product_id=product.id, _external=True
+    # )
     location_url = "/"  # delete once READ is implemented
-    return jsonify(message), status.HTTP_201_CREATED, {"Location": location_url}
+    return jsonify(message), status.HTTP_201_CREATED, {
+        "Location": location_url
+    }
 
 
 ######################################################################
