@@ -10,7 +10,7 @@ DRIVER = getenv('DRIVER', 'firefox').lower()
 
 
 def before_all(context):
-    """ Executed once before all tests """
+    """Executed once before all tests."""
     context.base_url = BASE_URL
     context.wait_seconds = WAIT_SECONDS
     # Select either Chrome or Firefox
@@ -23,15 +23,16 @@ def before_all(context):
 
 
 def after_all(context):
-    """ Executed after all tests """
+    """Executed after all tests."""
     context.driver.quit()
+
 
 ######################################################################
 # Utility functions to create web drivers
 ######################################################################
 
 def get_chrome():
-    """Creates a headless Chrome driver"""
+    """Creates a headless Chrome driver."""
     options = webdriver.ChromeOptions()
     options.add_argument("--no-sandbox")
     options.add_argument("--headless")
@@ -39,8 +40,7 @@ def get_chrome():
 
 
 def get_firefox():
-    """Creates a headless Firefox driver"""
+    """Creates a headless Firefox driver."""
     options = webdriver.FirefoxOptions()
     options.add_argument("--headless")
-    return webdriver.Firefox(options=options)    
-    
+    return webdriver.Firefox(options=options)
